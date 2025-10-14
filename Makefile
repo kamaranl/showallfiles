@@ -36,6 +36,3 @@ verify:
 
 bundle:
 	Compress-Archive $(OUT) $(NAME)_v$(VER)_$(GOOS)_$(GOARCH).zip -CompressionLevel Optimal -Force
-
-test:
-	@echo "$(VER)"
