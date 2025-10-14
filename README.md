@@ -2,7 +2,7 @@
 
 ShowAllFiles is a Windows utility that allows users to quickly toggle the visibility of hidden files in File Explorer. It provides a system tray interface, supports global hotkeys, logging, and optional verbose console output. ShowAllFiles was inspired by the MacOS feature available in the Finder application.
 
-[![latest release](https://badgen.net/github/release/kamaranl/showallfiles?icon=github&cache=3600)](https://github.com/kamaranl/showallfiles/releases/latest)
+[![latest release](https://badgen.net/github/release/kamaranl/showallfiles?icon=github&cache-3600)](https://github.com/kamaranl/showallfiles/releases/latest)
 
 ## Features
 
