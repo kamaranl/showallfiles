@@ -35,7 +35,7 @@ verify:
 	signtool.exe verify /v /pa $(OUT)
 
 bundle:
-	Compress-Archive $(OUT), LICENSE.txt $(NAME)_v$(VER)_$(GOOS)_$(GOARCH).zip -CompressionLevel Optimal -Force
+	Compress-Archive $(OUT) $(NAME)_v$(VER)_$(GOOS)_$(GOARCH).zip -CompressionLevel Optimal -Force
 
 test:
 	@echo "$(VER)"
