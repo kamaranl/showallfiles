@@ -10,7 +10,7 @@ BEGIN
   BEGIN
     BLOCK "040904B0"
     BEGIN
-      VALUE "CompanyName", "layne.dev\0"
+      VALUE "CompanyName", "Kamaran Layne\0"
       VALUE "FileDescription", "ShowAllFiles\0"
       VALUE "FileVersion", "0.0.1.0\0"
       VALUE "InternalName", "ShowAllFiles\0"
