@@ -106,3 +106,4 @@ bin
 *.syso
 *.zip
 *.log
+*_temp
