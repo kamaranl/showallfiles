@@ -11,8 +11,16 @@
   #define FVERSION 0,0,0,0
 #endif
 
-#ifndef YEAR
-  #define YEAR 2025
+#ifndef COPYYEAR
+  #define COPYYEAR 2025
+#endif
+
+#ifndef BUILDDATE
+  #define BUILDDATE now
+#endif
+
+#ifndef BUILDCOMMIT
+  #define BUILDCOMMIT HEAD
 #endif
 
 #define PRODUCTNAME "ShowAllFiles"
@@ -28,13 +36,16 @@ BEGIN
   BEGIN
     BLOCK "040904B0"
     BEGIN
-      VALUE "LegalCopyright", "Copyright \xA9 " str(YEAR) " " COMPANYNAME "\0"
+      VALUE "LegalCopyright", "Copyright \xA9 " str(COPYYEAR) " " COMPANYNAME "\0"
       VALUE "CompanyName", COMPANYNAME
       VALUE "FileDescription", PRODUCTNAME
+      VALUE "OriginalFilename", PRODUCTNAME ".exe\0"
       VALUE "InternalName", PRODUCTNAME
       VALUE "ProductName", PRODUCTNAME
       VALUE "FileVersion", str(VERSION)
       VALUE "ProductVersion", str(VERSION)
+      VALUE "BuildCommit", str(BUILDCOMMIT)
+      VALUE "BuildDate", str(BUILDDATE)
     END
   END
   BLOCK "VarFileInfo"

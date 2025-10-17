@@ -6,8 +6,12 @@
   !define VERSION "0.0.0"
 !endif
 
-!ifndef YEAR
-  !define YEAR "2025"
+!ifndef BUILDDATE
+  !define BUILDDATE "1970-01-01"
+!endif
+
+!ifndef BUILDCOMMIT
+  !define BUILDCOMMIT "HEAD"
 !endif
 
 !ifndef BUILDDIR
@@ -15,7 +19,7 @@
 !endif
 
 !ifndef FILESIZE
-  !define FILESIZE
+  !define FILESIZE 0
 !endif
 
 !define PRODUCTNAME "ShowAllFiles"
@@ -38,6 +42,7 @@
   InstallDir "$LOCALAPPDATA\Programs\${PRODUCTNAME}"
   InstallDirRegKey HKCU "Software\${COMPANYNAME}\${PRODUCTNAME}" "Install_Dir"
   ShowInstDetails show
+  ShowUninstDetails show
   RequestExecutionLevel user
 
 ;--------------------------------
@@ -65,6 +70,8 @@
     CreateShortCut "$SMPROGRAMS\${PRODUCTNAME}.lnk" "$INSTDIR\${APPFILE}"
 
     WriteRegStr HKCU "Software\${COMPANYNAME}\${PRODUCTNAME}" "Install_Dir" "$INSTDIR"
+    WriteRegStr HKCU "${UINSTREGKEY}" "BuildCommit" "${BUILDCOMMIT}"
+    WriteRegStr HKCU "${UINSTREGKEY}" "BuildDate" "${BUILDDATE}"
     WriteRegStr HKCU "${UINSTREGKEY}" "Comments" "Like (MacOS) Finder's AppleShowAllFiles, but for File Explorer on Windows."
     WriteRegStr HKCU "${UINSTREGKEY}" "Contact" "kamaran@layne.dev"
     WriteRegStr HKCU "${UINSTREGKEY}" "DisplayIcon" "$INSTDIR\${APPFILE}"
@@ -77,7 +84,7 @@
     WriteRegStr HKCU "${UINSTREGKEY}" "URLUpdateInfo" "${UPDATEURL}"
     WriteRegStr HKCU "${UINSTREGKEY}" "URLInfoAbout" "${PRODUCTURL}"
 
-    WriteRegDWORD HKCU "${UINSTREGKEY}" "EstimatedSize" "${FILESIZE}"
+    WriteRegDWORD HKCU "${UINSTREGKEY}" "EstimatedSize" ${FILESIZE}
     WriteRegDWORD HKCU "${UINSTREGKEY}" "NoModify" 1
     WriteRegDWORD HKCU "${UINSTREGKEY}" "NoRepair" 1
   SectionEnd
@@ -85,6 +92,8 @@
 ;--------------------------------
 ; Uninstall section
   Section "Uninstall"
+    nsExec::ExecToLog 'taskkill /f /im "${APPFILE}"'
+    Sleep 1000
     Delete "$INSTDIR\${APPFILE}"
     Delete "$SMSTARTUP\${PRODUCTNAME}.lnk"
     Delete "$SMPROGRAMS\${PRODUCTNAME}.lnk"
