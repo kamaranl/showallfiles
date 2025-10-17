@@ -15,6 +15,8 @@
 
 ShowAllFiles is a tray application for Windows that allows users to quickly toggle the visibility of hidden files in the File Explorer. It provides a system tray interface, supports global hotkeys, logging, and optional verbose console output. ShowAllFiles was inspired by the [MacOS feature](https://macos-defaults.com/finder/appleshowallfiles.html) available in the Finder application.
 
+**License**: [BSD-3-Clause](LICENSE)
+
 ## Features
 
 * Toggle hidden files visibility via system tray menu or global hotkey (`Win + Shift + .`).
