@@ -22,6 +22,10 @@
   !define FILESIZE 0
 !endif
 
+!ifndef OUTFILE
+  !define OUTFILE "${BUILDDIR}\setup.exe"
+!endif
+
 !define PRODUCTNAME "ShowAllFiles"
 !define COMPANYNAME "Kamaran Layne"
 !define ERRGENERIC  "An unexpected error occured. Please try again."
@@ -36,8 +40,8 @@
 
 ;--------------------------------
 ; General
-  Name "${PRODUCTNAME}"
-  OutFile "${BUILDDIR}\setup.exe"
+  Name "${SLUG}"
+  OutFile "${OUTFILE}"
   LicenseData "${BUILDDIR}\LICENSE.txt"
   InstallDir "$LOCALAPPDATA\Programs\${PRODUCTNAME}"
   InstallDirRegKey HKCU "Software\${COMPANYNAME}\${PRODUCTNAME}" "Install_Dir"
