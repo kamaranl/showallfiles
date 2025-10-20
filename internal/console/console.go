@@ -56,9 +56,9 @@ func (c *Console) Attach(pid ...uint32) error {
 		return ErrBoundGuard
 	}
 
-	var procId winapi.ProcId
+	var procId winapi.ACPId
 	if len(pid) > 0 {
-		procId = winapi.ProcId(pid[0])
+		procId = winapi.ACPId(pid[0])
 	} else {
 		procId = winapi.ATTACH_PARENT_PROCESS
 	}

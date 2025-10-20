@@ -139,7 +139,7 @@ func (l *Library) IsFileExplorer(hwnd winapi.HWND) bool {
 //	hwnd - The window handle to which the refresh message will be posted.
 func (l *Library) PostRefreshMessage(hwnd winapi.HWND) {
 	log.Debugf("Posting refresh message to window handle %d", hwnd)
-	if err := winapi.PostMessage(hwnd, winapi.WM_COMMAND, winapi.WPARAM(41504), 0); err != nil {
+	if err := winapi.PostMessageW(hwnd, winapi.WM_COMMAND, winapi.SFVIDM_REFRESH, 0); err != nil {
 		log.Warnf("Could not post refresh message to window handle %d: %v", hwnd, err)
 		return
 	}
@@ -381,7 +381,7 @@ func (l *Library) winEventProc(eventHook windows.Handle, event uint32, hwnd wina
 			l.PostRefreshMessage(hwnd)
 
 			if tID, ok := state.Get[uint32]("threadId_winEvent"); ok && tID != 0 {
-				if err := winapi.PostThreadMessage(tID, winapi.WM_QUIT, 0, 0); err != nil {
+				if err := winapi.PostThreadMessageW(tID, winapi.WM_QUIT, 0, 0); err != nil {
 					log.Warnf("Could not post WM_QUIT to thread %d: %v", tID, err)
 				}
 			}
