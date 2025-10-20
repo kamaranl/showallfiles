@@ -24,7 +24,6 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"runtime"
 	"strings"
 	"time"
 
@@ -189,7 +188,7 @@ func (a *Application) onReady() {
 		case <-mTopAbout.ClickedCh:
 			log.Debug("*Clicked About*")
 			msgbox("About",
-				a.Meta.Name+", version "+a.Meta.Version+" ("+runtime.GOOS+"-"+runtime.GOARCH+")"+a.Meta.License,
+				a.Meta.Name+", version "+a.Meta.Version+"\n"+a.Meta.License,
 				windows.MB_APPLMODAL|windows.MB_SETFOREGROUND, -1)
 
 		case <-mTopReportBug.ClickedCh:
