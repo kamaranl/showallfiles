@@ -1,13 +1,15 @@
+//go:build windows
+
 // Copyright (c) 2025, Kamaran Layne <kamaran@layne.dev>
 // See LICENSE for licensing information
 
-//go:build windows
-
-//go:generate windres resource.rc -O coff -o resource.syso
-
-// Package main provides the entry point for the ShowAllFiles application.
-// It initializes the main application logic from the internal app package,
-// embeds version information, and starts the application run loop.
+/*
+ShowAllFiles is a tray application for Windows that allows users to quickly
+toggle the visibility of hidden files in the File Explorer. It provides a system
+tray interface, supports global hotkeys, logging, and optional verbose console
+output. ShowAllFiles was inspired by the MacOS feature available in the Finder
+application.
+*/
 package main
 
 import (
@@ -16,27 +18,21 @@ import (
 	"github.com/kamaranl/showallfiles/internal/app"
 )
 
-const (
+var (
 	// Name defines the application name used for display and logging purposes.
-	Name = "ShowAllFiles"
+	Name string = "ShowAllFiles"
 
-	// License holds the license identifier and copyright notice for the application.
-	License = `
-Copyright © 2025, Kamaran Layne
-BSD 3-Clause License
+	// License defines the application license and copyright notice. It is used
+	// to display license information in the application.
+	License string = "Copyright © 2025, Kamaran Layne\nBSD 3-Clause License"
 
-This software is distributed "as-is" with NO WARRANTY.
-`
+	// Version holds the application version, embedded at build time from the
+	// VERSION file. It is used to display version information in the
+	// application and via command-line flags.
+	//go:embed VERSION
+	Version string
 )
 
-// Version holds the application version, embedded at build time from the VERSION file.
-// It is used to display version information in the application and via command-line flags.
-//
-//go:embed VERSION
-var Version string
-
-// main is the entry point of the ShowAllFiles application.
-// It creates a new Application instance, sets its version, and runs the application.
 func main() {
 	a := app.New(Name)
 	a.Meta.Version = Version
